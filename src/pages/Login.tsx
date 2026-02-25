@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AuthShell } from '../components/AuthShell';
 import { AuthTabs } from '../components/AuthTabs';
-import { supabase } from '../lib/supabase';
+import { signIn } from '../lib/auth';
 import { motion } from 'framer-motion';
 
 interface LoginProps {
@@ -20,13 +20,10 @@ export function Login({ onSuccess, onTabChange }: LoginProps) {
     setLoading(true);
     setError('');
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const result = await signIn(email, password);
 
-    if (error) {
-      setError("We couldn't verify your credentials. Please confirm or contact your administrator.");
+    if (!result.success && result.error) {
+      setError(result.error.message);
       setLoading(false);
     } else {
       onSuccess();

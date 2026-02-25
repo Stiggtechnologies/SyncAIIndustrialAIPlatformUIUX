@@ -7,7 +7,7 @@ interface ToastProps {
   onClose: () => void;
 }
 
-export function Toast({ message, show, onClose }: ToastProps) {
+export function Toast({ message, show }: ToastProps) {
   return (
     <AnimatePresence>
       {show && (

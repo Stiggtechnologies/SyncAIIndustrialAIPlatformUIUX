@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AuthShell } from '../components/AuthShell';
 import { AuthTabs } from '../components/AuthTabs';
-import { supabase } from '../lib/supabase';
+import { signUp } from '../lib/auth';
 import { motion } from 'framer-motion';
 
 interface SignupProps {
@@ -26,21 +26,23 @@ export function Signup({ onSuccess, onTabChange }: SignupProps) {
     setLoading(true);
     setError('');
 
-    const { error } = await supabase.auth.signUp({
+    if (formData.password.length < 8) {
+      setError('Password must be at least 8 characters long');
+      setLoading(false);
+      return;
+    }
+
+    const result = await signUp({
       email: formData.email,
       password: formData.password,
-      options: {
-        data: {
-          full_name: formData.fullName,
-          company: formData.company,
-          role: formData.role,
-          industry: formData.industry,
-        },
-      },
+      fullName: formData.fullName,
+      company: formData.company,
+      role: formData.role,
+      industry: formData.industry,
     });
 
-    if (error) {
-      setError(error.message);
+    if (!result.success && result.error) {
+      setError(result.error.message);
       setLoading(false);
     } else {
       onSuccess();
@@ -149,8 +151,10 @@ export function Signup({ onSuccess, onTabChange }: SignupProps) {
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               className="w-full px-4 py-3 bg-[#0B0F14] border border-[#232A33] rounded-lg text-[#E6EDF3] placeholder-[#9BA7B4] focus:outline-none focus:border-[#3A8DFF] focus:ring-1 focus:ring-[#3A8DFF] transition-colors"
               placeholder="••••••••"
+              minLength={8}
               required
             />
+            <p className="mt-2 text-xs text-[#9BA7B4]">Minimum 8 characters required</p>
           </div>
 
           {error && (

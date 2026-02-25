@@ -32,7 +32,7 @@ export function CommandCenter() {
   const [firstLogin, setFirstLogin] = useState(true);
 
   const { sessionsRemaining, decrementSession, sessionCount } = useTrialStore();
-  const { sidebarExpanded, toggleSidebar, executiveMode, toggleExecutiveMode } = useUIStore();
+  const { toggleSidebar, executiveMode, toggleExecutiveMode } = useUIStore();
 
   useEffect(() => {
     const loadUserProfile = async () => {

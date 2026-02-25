@@ -4,6 +4,7 @@ import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
 import { EnterpriseAccess } from './pages/EnterpriseAccess';
 import { CommandCenter } from './components/CommandCenter';
+import { LoadingScreen } from './components/LoadingScreen';
 import { Pricing } from './pages/Pricing';
 import { Security } from './pages/Security';
 import { Privacy } from './pages/Privacy';
@@ -50,22 +51,13 @@ function App() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-[#0B0F14] flex items-center justify-center">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-          className="w-12 h-12 border-2 border-[#3A8DFF] border-t-transparent rounded-full"
-        />
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   const pageTransition = {
     initial: { opacity: 0, y: 10 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -10 },
-    transition: { duration: 0.3, ease: 'easeInOut' }
   };
 
   return (
