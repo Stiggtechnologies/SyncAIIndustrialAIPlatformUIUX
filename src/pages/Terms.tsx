@@ -1,9 +1,21 @@
 import { motion } from 'framer-motion';
+import { ArrowLeft } from 'lucide-react';
 
-export function Terms() {
+interface TermsProps {
+  onNavigate: (page: 'signin' | 'signup' | 'enterprise' | 'app' | 'pricing' | 'security' | 'privacy' | 'terms') => void;
+}
+
+export function Terms({ onNavigate }: TermsProps) {
   return (
     <div className="min-h-screen bg-[#0B0F14] py-16 px-6">
       <div className="max-w-4xl mx-auto">
+        <button
+          onClick={() => onNavigate('signin')}
+          className="flex items-center gap-2 text-[#9BA7B4] hover:text-[#E6EDF3] mb-8 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to Sign In
+        </button>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

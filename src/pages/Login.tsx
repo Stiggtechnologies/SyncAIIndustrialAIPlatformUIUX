@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 interface LoginProps {
   onSuccess: () => void;
-  onTabChange: (tab: 'signin' | 'signup' | 'enterprise') => void;
+  onTabChange: (tab: 'signin' | 'signup' | 'enterprise' | 'privacy' | 'terms' | 'security') => void;
 }
 
 export function Login({ onSuccess, onTabChange }: LoginProps) {
@@ -138,6 +138,31 @@ export function Login({ onSuccess, onTabChange }: LoginProps) {
             MFA enabled for enterprise tenants
           </p>
         </form>
+
+        <div className="mt-8 pt-6 border-t border-[#232A33]">
+          <div className="flex justify-center gap-4 text-xs text-[#9BA7B4]">
+            <button
+              onClick={() => onTabChange('security')}
+              className="hover:text-[#E6EDF3] transition-colors"
+            >
+              Security
+            </button>
+            <span>•</span>
+            <button
+              onClick={() => onTabChange('privacy')}
+              className="hover:text-[#E6EDF3] transition-colors"
+            >
+              Privacy
+            </button>
+            <span>•</span>
+            <button
+              onClick={() => onTabChange('terms')}
+              className="hover:text-[#E6EDF3] transition-colors"
+            >
+              Terms
+            </button>
+          </div>
+        </div>
       </div>
     </AuthShell>
   );
