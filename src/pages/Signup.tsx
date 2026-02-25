@@ -119,7 +119,14 @@ export function Signup({ onSuccess, onTabChange }: SignupProps) {
                 <option value="oil-gas">Oil & Gas</option>
                 <option value="mining">Mining</option>
                 <option value="utilities">Utilities</option>
+                <option value="power-generation">Power Generation</option>
                 <option value="manufacturing">Manufacturing</option>
+                <option value="pharmaceuticals">Pharmaceuticals</option>
+                <option value="food-beverage">Food & Beverage</option>
+                <option value="transportation-logistics">Transportation & Logistics</option>
+                <option value="aviation">Aviation</option>
+                <option value="marine-shipping">Marine & Shipping</option>
+                <option value="data-centers">Data Centers</option>
                 <option value="heavy-equipment">Heavy Equipment</option>
               </select>
             </div>
